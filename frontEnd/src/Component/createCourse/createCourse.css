@@ -1,0 +1,171 @@
+/* General styles */
+.create {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(8, 0, 58, 0.7), rgba(8, 0, 58, 0.7)), url('../../images/emmanuel-college-georgia_hero (1).jpg');
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .createform {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  /* Form styles */
+  .formCo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: auto;
+    width: 450px;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 1px solid #333;
+    justify-content: space-between;
+  }
+  
+  /* Style for labels and inputs */
+  .formCo label {
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+  }
+  
+  .formCo label input.inputrg,
+  .formCo label select.inputrg { /* Apply the same styles to select */
+    background-color: #333;
+    color: #fff;
+    width: 100%; /* Make the select element the same width as input */
+    padding: 12px;
+    outline: none;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .formCo label input.inputrg:focus,
+  .formCo label select.inputrg:focus { /* Apply focus style to select */
+    border-color: #00bfff;
+  }
+  
+  .formCo label span {
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9em;
+    cursor: text;
+    transition: top 0.3s, font-size 0.3s;
+  }
+  
+  .formCo label input.inputrg::placeholder,
+  .formCo label select.inputrg::placeholder { /* Apply placeholder style to select */
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .formCo label input.inputrg:focus + span,
+  .formCo label input.inputrg:valid + span,
+  .formCo label select.inputrg:focus + span,
+  .formCo label select.inputrg:valid + span { /* Apply focus style to select */
+    color: #00bfff;
+    top: 0;
+    font-size: 0.8em;
+    font-weight: 600;
+  }
+  
+  /* File drop styles */
+  .form6 {
+    background-color: #fff;
+    box-shadow: 0 10px 60px rgb(218, 229, 255);
+    border: 1px solid rgb(159, 159, 160);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.125rem;
+    max-width: 320px;
+  }
+  
+  .form-title {
+    color: #000000;
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+  
+  .form-paragraph {
+    margin-top: 10px;
+    font-size: 0.9375rem;
+    color: rgb(105, 105, 105);
+  }
+  
+  .drop-container {
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 2px dashed rgb(171, 202, 255);
+    color: #444;
+    cursor: pointer;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+  }
+  
+  .drop-container:hover {
+    background: rgba(0, 140, 255, 0.164);
+    border-color: rgba(17, 17, 17, 0.616);
+  }
+  
+  .drop-container:hover .drop-title {
+    color: #222;
+  }
+  
+  .drop-title {
+    color: #444;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    transition: color .2s ease-in-out;
+  }
+  
+  #file-input {
+    display: none;
+  }
+  
+  /* Submit button styles */
+  .submit {
+    border: none;
+    outline: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    background-color: #00bfff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .submit:hover {
+    background-color: #00bfff96;
+  }
+  .fille{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }

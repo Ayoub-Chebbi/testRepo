@@ -1,0 +1,121 @@
+.body {
+   
+
+    
+    display: flex;
+
+    background-color: #060c12;
+  }
+  
+  .Login {
+    width: 234%;
+    height: 100vh;
+    background: linear-gradient(rgba(8, 0, 58, 0.7), rgba(8, 0, 58, 0.7)), url('../../images/hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .Login-text {
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 2em;
+  }
+  
+  .Login-text h1 {
+    font-size: 50px;
+    font-weight: 100;
+ 
+  }
+  
+
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .form1 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 2em;
+    width: 400px;
+    
+    background-color:#171825;
+    border-radius: 25px;
+    transition: 0.4s ease-in-out;
+  }
+  
+  .form1:hover {
+    transform: scale(1.05);
+    border: 1px solid black;
+  }
+  
+  #heading {
+    text-align: center;
+    margin-bottom: 2em;
+    color: rgb(255, 255, 255);
+    font-size: 1.2em;
+  }
+  
+  .field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    border-radius: 25px;
+    padding: 0.6em;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #171717;
+    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  }
+  
+  .input-icon {
+    height: 1.3em;
+    width: 1.3em;
+    fill: white;
+  }
+  
+  .input-field {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #d3d3d3;
+  }
+  
+  .btn {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 2.5em;
+    color: #040404;
+    background-color: #040404;
+  }
+  
+  .button1 {
+    padding: 0.5em;
+    padding-left: 1.1em;
+    padding-right: 1.1em;
+    border-radius: 5px;
+    margin-right: 0.5em;
+    border: none;
+    outline: none;
+    transition: 0.4s ease-in-out;
+    background-color: #0f0e0e;
+    color: rgb(243, 234, 234);
+  }
+  
+  .button1:hover {
+    background-color: black;
+    color: white;
+  }
+  

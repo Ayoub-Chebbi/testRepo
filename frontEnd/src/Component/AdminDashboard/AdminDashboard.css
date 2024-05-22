@@ -1,0 +1,315 @@
+/* Container to center the form and align the cards */
+.class {
+  display: flex;
+  justify-content: center;
+  
+  background: linear-gradient(rgba(8, 0, 58, 0.7), rgba(8, 0, 58, 0.7)), url('../../images/hero.png');
+  height: auto;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container {
+  display: flex;
+  
+  width: 100%;
+  justify-content: center;
+}
+
+.dashboard1 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 60px;
+  justify-content: flex-start; /* Align items to the start */
+  padding: 50px;
+  will-change: auto;
+  width: auto;
+
+}
+
+.card {
+  background-color: rgb(10, 10, 10);
+  color: black;
+  width: 250px;
+  max-height: 350px;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  margin: 20px;
+}
+
+.card-img {
+  height: 180px;
+  display: flex;
+  justify-content: center;
+}
+
+.card-img img {
+  height: 100%;
+  width: 95%;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: rgba(37, 63, 89, 0.2) 0px 8px 24px;
+}
+
+.project-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project-title {
+  font-weight: 500;
+  font-size: 1.2em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgb(255, 255, 255);
+}
+
+.lighter {
+  font-size: 0.9em;
+  color: aliceblue;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag {
+  font-weight: lighter;
+  color: grey;
+  font-size: 0.8em;
+}
+
+/* Styles for the registration form */
+.formRe {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 600px;
+  width: 450px;
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  background-color: #1a1a1a;
+  color: #fff;
+  border: 1px solid #333;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  color: #00bfff;
+}
+
+.title::before,
+.title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: #00bfff;
+}
+
+.title::before {
+  width: 18px;
+  height: 18px;
+}
+
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.message,
+.signin {
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.signin {
+  text-align: center;
+}
+
+.signin a:hover {
+  text-decoration: underline royalblue;
+}
+
+.signin a {
+  color: #00bfff;
+}
+
+.formRe label {
+  position: relative;
+}
+
+.formRe label .inputrg {
+  background-color: #333;
+  color: #fff;
+  width: 100%;
+  padding: 20px 5px 5px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+}
+
+.formRe label .inputrg + span {
+  color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  left: 10px;
+  top: 0px;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.formRe label .inputrg:placeholder-shown + span {
+  top: 12.5px;
+  font-size: 0.9em;
+}
+
+.formRe label .inputrg:focus + span,
+.formRe label .inputrg:valid + span {
+  color: #00bfff;
+  top: 0px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.inputrg {
+  font-size: medium;
+}
+
+.submit {
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  transform: .3s ease;
+  background-color: #00bfff;
+}
+
+.submit:hover {
+  background-color: #00bfff96;
+}
+
+@keyframes pulse {
+  from {
+      transform: scale(0.9);
+      opacity: 1;
+  }
+
+  to {
+      transform: scale(1.8);
+      opacity: 0;
+  }
+}
+
+
+.card {
+  background-color: rgb(10, 10, 10);
+  color: black;
+  width: 250px;
+  max-height: 400px; /* Increase the height to accommodate buttons */
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensure content is spaced out */
+}
+
+.card-img {
+  height: 180px;
+  display: flex;
+  justify-content: center;
+}
+
+.card-img img {
+  height: 100%;
+  width: 95%;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: rgba(37, 63, 89, 0.2) 0px 8px 24px;
+}
+
+.project-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project-title {
+  font-weight: 500;
+  font-size: 1.2em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgb(255, 255, 255);
+}
+
+.lighter {
+  font-size: 0.9em;
+  color: aliceblue;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag {
+  font-weight: lighter;
+  color: grey;
+  font-size: 0.8em;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 10px;
+  background-color: #2ba8fb;
+  color: #ffffff;
+  font-weight: bold;
+  transition: all 0.5s;
+}
+
+button:hover {
+  background-color: #6fc5ff;
+  box-shadow: 0 0 20px #6fc5ff50;
+  transform: scale(1.1);
+}
+
+button:active {
+  background-color: #3d94cf;
+  transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.98);
+}
+
+button .icon {
+  margin-right: 5px; /* Add some space between the icon and text */
+}

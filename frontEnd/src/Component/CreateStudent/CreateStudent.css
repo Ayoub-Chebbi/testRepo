@@ -1,0 +1,102 @@
+/* Container to center the form */
+.create {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  background: linear-gradient(rgba(8, 0, 58, 0.7), rgba(8, 0, 58, 0.7)), url('../../images/emmanuel-college-georgia_hero (1).jpg');
+  height: 100vh; /* Ensures the container takes up the full height of the viewport */
+  background-size: cover;
+  width: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.createform {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Ensures the form takes up the full width of the parent container */
+}
+
+.dashboard {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 60px;
+justify-content: center;
+padding: 50px;
+}
+
+/* CSS for input fields and labels */
+.formRe label {
+  position: relative;
+  display: block; /* Ensure labels are displayed as block elements */
+  margin-bottom: 10px; /* Add some space between labels */
+}
+
+.formRe label input.inputrg {
+  background-color: #333;
+  color: #fff;
+  width: 100%;
+  padding: 10px; /* Adjust padding for better input field appearance */
+  outline: none;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+  transition: border-color 0.3s ease; /* Add transition for better visual feedback */
+}
+
+.formRe label input.inputrg:focus {
+  border-color: #00bfff; /* Change border color on focus */
+}
+
+.formRe label span {
+  color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  left: 10px;
+  top: 50%; /* Adjust vertical alignment of labels */
+  transform: translateY(-50%); /* Center labels vertically */
+  font-size: 0.9em;
+  cursor: text;
+  transition: top 0.3s, font-size 0.3s; /* Add transitions for smooth animation */
+}
+
+.formRe label input.inputrg:placeholder-shown + span {
+  top: 50%; /* Adjust top position for placeholder */
+  font-size: 0.9em;
+}
+
+.formRe label input.inputrg:focus + span,
+.formRe label input.inputrg:valid + span {
+  color: #00bfff;
+  top: 0;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+/* Additional styles for submit button */
+.submit {
+  border: none;
+  outline: none;
+  padding: 10px 20px; /* Adjust padding for better button appearance */
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  background-color: #00bfff;
+  cursor: pointer; /* Add cursor pointer for better UX */
+  transition: background-color 0.3s ease; /* Add transition for hover effect */
+}
+
+.submit:hover {
+  background-color: #00bfff96; /* Change background color on hover */
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
