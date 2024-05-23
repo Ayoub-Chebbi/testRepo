@@ -1,6 +1,7 @@
 package com.project.services;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -20,6 +21,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
     public User register(User newUser, BindingResult result) {
         // Check if email is already in use
         Optional<User> potentialUser = userRepository.findByEmail(newUser.getEmail());
@@ -72,5 +76,8 @@ public class UserService {
     public User findById(Long id) {
         Optional<User> potentialUser = userRepository.findById(id);
         return potentialUser.orElse(null);
+    }
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }
