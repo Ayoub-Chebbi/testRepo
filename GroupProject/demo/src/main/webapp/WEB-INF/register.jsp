@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <title>Login</title>
+    <title>Register</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Custom CSS -->
@@ -130,10 +130,14 @@ h2 {
             <h1>We Ensure Better Education for a Better World</h1>
         </div>
         <div class="login-container">
-            <!-- Login Form -->
+            <!-- Register Form -->
             <div class="form1">
-                <form:form action="${pageContext.request.contextPath}/user/login" method="post" modelAttribute="newLogin">
-                    <h2>Log In</h2>
+                <form:form action="${pageContext.request.contextPath}/user/register" method="post" modelAttribute="newUser">
+                    <h2>Register</h2>
+                    <div class="form-group">
+                        <form:errors path="username" class="text-danger"/>
+                        <form:input class="form-control" path="username" placeholder="Name"/>
+                    </div>
                     <div class="form-group">
                         <form:errors path="email" class="text-danger"/>
                         <form:input class="form-control" path="email" placeholder="Email"/>
@@ -142,7 +146,11 @@ h2 {
                         <form:errors path="password" class="text-danger"/>
                         <form:input class="form-control" path="password" placeholder="Password" type="password"/>
                     </div>
-                    <button type="submit" class="btn btn-primary">Log In</button>
+                    <div class="form-group">
+                        <form:errors path="confirm" class="text-danger"/>
+                        <form:input class="form-control" path="confirm" placeholder="Confirm Password" type="password"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
                 </form:form>
             </div>
         </div>

@@ -21,20 +21,26 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Description</th>
-                <th>Instructor</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <c:forEach items="${courses}" var="course">
                 <tr>
                     <td>${course.id}</td>
-                    <td>${course.name}</td>
+                    <td><a href="/api/courses/${course.id}">${course.name}</a></td>
                     <td>${course.description}</td>
-                    <td>${course.instructor.username}</td>
+                    <td><a href="/api/courses/${course.id}/edit">Edit</a>
+                    	<a href="/api/courses/${course.id}/delete">Delete</a>
+                    	<a href="/api/instructor/add-course-to-user">Add a Student</a>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
+    <a href="/api/courses/new">Create A New Course</a>
+    <a href="/register">Register a New User</a>
+    <a href="/api/users/all">Show all users</a>
 </div>
 
 </body>

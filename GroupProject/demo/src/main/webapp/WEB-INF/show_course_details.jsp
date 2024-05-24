@@ -17,8 +17,7 @@
     <h1 class="text-center">${course.name}</h1>
     <p class="text-center">${course.description}</p>
     <hr>
-    <h3 class="text-center">Instructor: ${course.instructor.username}</h3>
-    <hr>
+    
     <h3 class="text-center">Students Enrolled:</h3>
     <ul>
         <c:forEach items="${course.users}" var="user">
@@ -27,7 +26,7 @@
     </ul>
     <hr>
     <form action="${pageContext.request.contextPath}/api/courses/${course.id}/addUser" method="post">
-        <button type="submit" class="btn btn-primary">Enroll in Course</button>
+        <a href="/api/instructor/add-course-to-user">Enroll a student in a Course</a>
     </form>
 </div>
 
