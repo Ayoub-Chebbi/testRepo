@@ -14,7 +14,6 @@
             <tr>
                 <th>Course Name</th>
                 <th>Description</th>
-                <th>Instructor</th>
             </tr>
         </thead>
         <tbody>
@@ -22,10 +21,27 @@
                 <tr>
                     <td><c:out value="${course.name}" /></td>
                     <td><c:out value="${course.description}" /></td>
-                    <td><c:out value="${course.instructor.name}" /></td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
+
+    <h2>Edit My Information</h2>
+    <form action="<c:url value='/student/update' />" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="${user.username}" required />
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="${user.email}" required />
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+        </div>
+        <button type="submit">Update</button>
+    </form>
 </body>
 </html>

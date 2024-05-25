@@ -65,11 +65,11 @@ public class MainController {
         model.addAttribute("successMessage", "Registration successful!");
         return "redirect:/api/courses/all";
     }
-    
+
     @GetMapping("/api/users/{id}/edit")
     public String showEditUserForm(@PathVariable("id") Long id, Model model, HttpSession session) {
         if (!isLoggedIn(session)) {
-            return "redirect:/login.jsp"; // Redirect to login page if user not logged in
+            return "redirect:/"; // Redirect to login page if user not logged in
         }
         User user = userService.findById(id);
         if (user == null) {
@@ -84,7 +84,7 @@ public class MainController {
                              @Valid @ModelAttribute("user") User user, 
                              BindingResult bindingResult, HttpSession session) {
         if (!isLoggedIn(session)) {
-            return "redirect:/login.jsp"; // Redirect to login page if user not logged in
+            return "redirect:/"; // Redirect to login page if user not logged in
         }
         if (bindingResult.hasErrors()) {
             return "edit_user.jsp"; // Return to the form page with errors displayed
@@ -97,7 +97,7 @@ public class MainController {
     @GetMapping("/api/users/{id}/delete")
     public String deleteUser(@PathVariable("id") Long id, HttpSession session) {
         if (!isLoggedIn(session)) {
-            return "redirect:/login.jsp"; // Redirect to login page if user not logged in
+            return "redirect:/"; // Redirect to login page if user not logged in
         }
         userService.deleteUser(id);
         return "redirect:/api/users/all";
@@ -107,7 +107,7 @@ public class MainController {
     @GetMapping("/api/users/all")
     public String showAllUsers(Model model, HttpSession session) {
         if (!isLoggedIn(session)) {
-            return "redirect:/login.jsp"; // Redirect to login page if user not logged in
+            return "redirect:/"; // Redirect to login page if user not logged in
         }
         
         List<User> users = userService.getAllUsers();
@@ -144,6 +144,12 @@ public class MainController {
 
         return redirectUrl;
     }
+    
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // Invalidate the session to log out the user
+        return "redirect:/"; // Redirect to the login page or home page
+    }
 
     @GetMapping("/api/courses/new")
     public String showNewCourseForm(Model model) {
@@ -155,7 +161,7 @@ public class MainController {
     public String saveCourse(@Valid @ModelAttribute("course") Course course,
                              BindingResult bindingResult, HttpSession session) {
         if (!isLoggedIn(session)) {
-            return "redirect:/login.jsp";
+            return "redirect:/";
         }
         if (bindingResult.hasErrors()) {
             return "new_course.jsp"; // Return to the form page with errors displayed
@@ -185,7 +191,7 @@ public class MainController {
                                @Valid @ModelAttribute("course") Course course,
                                BindingResult bindingResult, HttpSession session) {
         if (!isLoggedIn(session)) {
-            return "redirect:/login.jsp"; // Redirect to login page if user not logged in
+            return "redirect:/"; // Redirect to login page if user not logged in
         }
         if (bindingResult.hasErrors()) {
             return "edit_course.jsp"; // Return to the form page with errors displayed
@@ -198,7 +204,7 @@ public class MainController {
     @GetMapping("/api/courses/{id}/delete")
     public String deleteCourse(@PathVariable("id") Long id, HttpSession session) {
         if (!isLoggedIn(session)) {
-            return "redirect:/login.jsp"; // Redirect to login page if user not logged in
+            return "redirect:/"; // Redirect to login page if user not logged in
         }
         courseService.deleteCourse(id);
         return "redirect:/api/courses/all";
@@ -207,7 +213,7 @@ public class MainController {
     @GetMapping("/api/courses/{id}")
     public String showCourseDetails(@PathVariable("id") Long id, Model model, HttpSession session) {
         if (!isLoggedIn(session)) {
-            return "redirect:/login.jsp"; // Redirect to login page if user not logged in
+            return "redirect:/"; // Redirect to login page if user not logged in
         }
         Course course = courseService.getCourseById(id).orElse(null);
         if (course == null) {
@@ -231,7 +237,7 @@ public class MainController {
     @GetMapping("/api/instructor/add-course-to-user")
     public String showAddCourseToUserForm(Model model, HttpSession session) {
         if (!isLoggedIn(session)) {
-            return "redirect:/login.jsp";
+            return "redirect:/";
         }
 
         List<User> users = userService.getAllUsers();
@@ -247,7 +253,7 @@ public class MainController {
                                   @RequestParam("courseId") Long courseId,
                                   HttpSession session) {
         if (!isLoggedIn(session)) {
-            return "redirect:/login.jsp"; // Redirect to login page if user not logged in
+            return "redirect:/"; // Redirect to login page if user not logged in
         }
 
         User user = userService.findById(userId);
@@ -266,7 +272,7 @@ public class MainController {
     @GetMapping("/student/courses")
     public String showStudentCourses(Model model, HttpSession session) {
         if (!isLoggedIn(session)) {
-            return "redirect:/login.jsp"; // Redirect to login page if user not logged in
+            return "redirect:/"; // Redirect to login page if user not logged in
         }
 
         User student = userService.findById((Long) session.getAttribute("userId"));
@@ -277,6 +283,36 @@ public class MainController {
 
         List<Course> courses = student.getCourses();
         model.addAttribute("courses", courses);
+        model.addAttribute("user", student); // Add the user to the model
         return "student_courses.jsp";
+    }
+
+    @PostMapping("/student/update")
+    public String updateStudent(@Valid @ModelAttribute("user") User user, 
+                                BindingResult bindingResult, HttpSession session, Model model) {
+        if (!isLoggedIn(session)) {
+            return "redirect:/"; // Redirect to login page if user not logged in
+        }
+        if (bindingResult.hasErrors()) {
+            // Return to the form page with errors displayed
+            return "student_courses.jsp";
+        }
+
+        // Update the student information
+        Long userId = (Long) session.getAttribute("userId");
+        User existingUser = userService.findById(userId);
+        if (existingUser == null) {
+            // Handle case where user is not found
+            return "error.jsp";
+        }
+
+        existingUser.setUsername(user.getUsername());
+        existingUser.setEmail(user.getEmail());
+        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+            existingUser.setPassword(user.getPassword());
+        }
+
+        userService.saveUser(existingUser);
+        return "redirect:/student/courses";
     }
 }

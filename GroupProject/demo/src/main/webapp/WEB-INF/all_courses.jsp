@@ -30,9 +30,10 @@
                     <td>${course.id}</td>
                     <td><a href="/api/courses/${course.id}">${course.name}</a></td>
                     <td>${course.description}</td>
-                    <td><a href="/api/courses/${course.id}/edit">Edit</a>
-                    	<a href="/api/courses/${course.id}/delete">Delete</a>
-                    	<a href="/api/instructor/add-course-to-user">Add a Student</a>
+                    <td>
+                        <a href="/api/courses/${course.id}/edit">Edit</a>
+                        <a href="/api/courses/${course.id}/delete">Delete</a>
+                        <a href="/api/instructor/add-course-to-user">Add a Student</a>
                     </td>
                 </tr>
             </c:forEach>
@@ -41,6 +42,7 @@
     <a href="/api/courses/new">Create A New Course</a>
     <a href="/register">Register a New User</a>
     <a href="/api/users/all">Show all users</a>
+    <a href="/logout" class="btn btn-danger mt-3">Log Out</a>
 </div>
 
 </body>
