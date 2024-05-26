@@ -10,7 +10,21 @@
 </head>
 <body>
 
-<style>h1 {
+<style>
+ @media screen and (max-width: 600px) {
+            .tbl-header, .tbl-content {
+                overflow-x: auto;
+                display: block;
+            }
+            table {
+                width: 100%;
+            }
+            th, td {
+                white-space: nowrap;
+            }
+        }
+
+h1 {
     font-size: 30px;
     color: #fff;
     text-transform: uppercase;

@@ -361,7 +361,6 @@
 
 
 
-
                           <label >Courses:
                               <input class="inputrg">
                               <form:label path="courses"></form:label>

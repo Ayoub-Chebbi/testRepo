@@ -395,7 +395,7 @@ button .icon {
             <button class="value">
                 <svg xmlns="" viewBox="0 0 128 128" width="24" height="24">
                 </svg>
-                Logout
+                <a href="/logout">Logout</a>
             </button>
         </div>
     
@@ -408,7 +408,7 @@ button .icon {
                     <article class="card">
                         <div class="card-img">
                             <c:forEach items="${courses}" var="course">
-                                <img src="https://th.bing.com/th/id/OIP.m8nFrqg3AiItcY0UCSYZSgHaE8?w=270&h=180&c=7&r=0&o=5&pid=1.7" class="card-imgs"/>
+                                
                         </div>
                         <div class="project-info">
                             <div class="flex">
