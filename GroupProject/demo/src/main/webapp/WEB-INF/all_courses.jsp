@@ -13,6 +13,8 @@
 </head>
 <body>
 
+
+
 <div class="container mt-5">
     <h1 class="text-center">All Courses</h1>
     <table class="table mt-3">

@@ -239,10 +239,8 @@ public class MainController {
         if (!isLoggedIn(session)) {
             return "redirect:/";
         }
-
         List<User> users = userService.getAllUsers();
         List<Course> courses = courseService.getAllCourses();
-
         model.addAttribute("users", users);
         model.addAttribute("courses", courses);
         return "add_course_to_user.jsp";
