@@ -14,7 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 public class MainController {
@@ -38,7 +42,13 @@ public class MainController {
     }
 
     @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
+    public String showRegistrationForm(Model model,HttpSession session) {
+    	if (!isLoggedIn(session)) {
+            return "redirect:/"; // Redirect to login page if user not logged in
+        }
+    	if (!hasInstructorRole(session)) {
+            return "error.jsp"; // Redirect to error page if user doesn't have instructor role
+        }
         model.addAttribute("newUser", new User());
         return "register.jsp";
     }
@@ -71,6 +81,9 @@ public class MainController {
         if (!isLoggedIn(session)) {
             return "redirect:/"; // Redirect to login page if user not logged in
         }
+        if (!hasInstructorRole(session)) {
+            return "error.jsp"; // Redirect to error page if user doesn't have instructor role
+        }
         User user = userService.findById(id);
         if (user == null) {
             return "error.jsp"; // Handle user not found error
@@ -99,6 +112,9 @@ public class MainController {
         if (!isLoggedIn(session)) {
             return "redirect:/"; // Redirect to login page if user not logged in
         }
+        if (!hasInstructorRole(session)) {
+            return "error.jsp"; // Redirect to error page if user doesn't have instructor role
+        }
         userService.deleteUser(id);
         return "redirect:/api/users/all";
     }
@@ -108,6 +124,9 @@ public class MainController {
     public String showAllUsers(Model model, HttpSession session) {
         if (!isLoggedIn(session)) {
             return "redirect:/"; // Redirect to login page if user not logged in
+        }
+        if (!hasInstructorRole(session)) {
+            return "error.jsp"; // Redirect to error page if user doesn't have instructor role
         }
         
         List<User> users = userService.getAllUsers();
@@ -130,7 +149,11 @@ public class MainController {
         }
 
         session.setAttribute("userId", user.getId());
-
+        Set<Role> rolesSet = user.getRoles(); // Assuming user.getRoles() returns a Set<Role>
+        List<String> rolesList = rolesSet.stream()
+                                         .map(Role::name) // Assuming Role is an enum
+                                         .collect(Collectors.toList());
+        session.setAttribute("roles", rolesList);
         String redirectUrl;
         if (user.getRoles().contains(Role.INSTRUCTOR)) {
             redirectUrl = "redirect:/api/courses/all";
@@ -145,14 +168,46 @@ public class MainController {
         return redirectUrl;
     }
     
-    @GetMapping("/logout")
+    @GetMapping("/api/users2/{id}/edit")
+    public String showEditUserForm1(@PathVariable("id") Long id, Model model, HttpSession session) {
+        if (!isLoggedIn(session)) {
+            return "redirect:/"; // Redirect to login page if user not logged in
+        }
+        
+        User user = userService.findById(id);
+        if (user == null) {
+          return  "redirect:/login";
+        }
+        
+
+        if (!user.getRoles().contains(Role.INSTRUCTOR)) {
+            return "redirect:/error.jsp";
+        }
+        
+        model.addAttribute("user", user);
+        return "edit_user.jsp";
+    }
+
+    
+    private boolean hasInstructorRole(HttpSession session) {
+    	List<String> roles = (List<String>) session.getAttribute("roles");
+        return roles != null && roles.contains("INSTRUCTOR");
+    }
+    
+	@GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate(); // Invalidate the session to log out the user
         return "redirect:/"; // Redirect to the login page or home page
     }
 
     @GetMapping("/api/courses/new")
-    public String showNewCourseForm(Model model) {
+    public String showNewCourseForm(Model model , HttpSession session) {
+    	if (!isLoggedIn(session)) {
+            return "redirect:/"; // Redirect to login page if user not logged in
+        }
+    	if (!hasInstructorRole(session)) {
+            return "error.jsp"; // Redirect to error page if user doesn't have instructor role
+        }
         model.addAttribute("course", new Course());
         return "new_course.jsp";
     }
@@ -172,10 +227,14 @@ public class MainController {
         return "redirect:/api/courses/all";
     }
 
+    
     @GetMapping("/api/courses/{id}/edit")
     public String showEditCourseForm(@PathVariable("id") Long id, Model model, HttpSession session) {
         if (!isLoggedIn(session)) {
             return "redirect:/"; // Redirect to login page if user not logged in
+        }
+        if (!hasInstructorRole(session)) {
+            return "error.jsp"; // Redirect to error page if user doesn't have instructor role
         }
         Course course = courseService.getCourseById(id).orElse(null);
         if (course == null) {
@@ -206,6 +265,9 @@ public class MainController {
         if (!isLoggedIn(session)) {
             return "redirect:/"; // Redirect to login page if user not logged in
         }
+        if (!hasInstructorRole(session)) {
+            return "error.jsp"; // Redirect to error page if user doesn't have instructor role
+        }
         courseService.deleteCourse(id);
         return "redirect:/api/courses/all";
     }
@@ -214,6 +276,9 @@ public class MainController {
     public String showCourseDetails(@PathVariable("id") Long id, Model model, HttpSession session) {
         if (!isLoggedIn(session)) {
             return "redirect:/"; // Redirect to login page if user not logged in
+        }
+        if (!hasInstructorRole(session)) {
+            return "error.jsp"; // Redirect to error page if user doesn't have instructor role
         }
         Course course = courseService.getCourseById(id).orElse(null);
         if (course == null) {
@@ -229,6 +294,10 @@ public class MainController {
         if (!isLoggedIn(session)) {
             return "redirect:/login.jsp"; // Redirect to login page if user not logged in
         }
+        System.out.print(hasInstructorRole(session));
+        if (!hasInstructorRole(session)) {
+            return "error.jsp"; // Redirect to error page if user doesn't have instructor role
+        }
         List<Course> courses = courseService.getAllCourses();
         model.addAttribute("courses", courses);
         return "all_courses.jsp";
@@ -238,6 +307,9 @@ public class MainController {
     public String showAddCourseToUserForm(Model model, HttpSession session) {
         if (!isLoggedIn(session)) {
             return "redirect:/";
+        }
+        if (!hasInstructorRole(session)) {
+            return "error.jsp"; // Redirect to error page if user doesn't have instructor role
         }
         List<User> users = userService.getAllUsers();
         List<Course> courses = courseService.getAllCourses();
